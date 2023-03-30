@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
+    "django_seed",
 
     # Django Rest Framework
     "rest_framework",
@@ -67,6 +67,12 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+    'PAGINATE_BY_PARAM': 'page_size'
+}
 
 ROOT_URLCONF = "desafioCapyba.urls"
 
