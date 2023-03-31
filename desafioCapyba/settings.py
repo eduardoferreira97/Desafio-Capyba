@@ -23,6 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-64%*liicy=&v@$fz0c8@(j$bf%uf4+&l#&3@af1w2%w!@ttg5a"
 
+# Django Simple JWT SECRET KEY
+SECRET_KEY_JWT = 'KAMSLÇFaSF/çalfsçl,ÇL/,SDÇL,lsam~df/~çlas~l/ad /ç~lsd,flç,sdfa'
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -54,9 +57,27 @@ INSTALLED_APPS = [
 
     # Django Rest Framework
     "rest_framework",
-
-
+    "rest_framework_simplejwt",
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',  # noqa
+    'PAGE_SIZE': 10,
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
+
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'BLACKLIST_AFTER_ROTATION': False,
+    'SIGNING_KEY': SECRET_KEY_JWT,
+    'AUTH_HEADER_TYPES': ('Bearer',),
+}
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
