@@ -62,21 +62,32 @@ INSTALLED_APPS = [
 
     # Django Rest Framework Auth
     'rest_framework.authtoken',
-    'dj_rest_auth',
-    'django.contrib.sites',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'dj_rest_auth.registration',
-    'allauth.socialaccount.providers.google',
+    'authemail',
     
 ]
-SITE_ID = 1
+
+AUTH_USER_MODEL = 'author.MyUser'
 REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',  # noqa
+    'DEFAULT_PAGINATION_CLASS': (
+        'rest_framework.pagination.LimitOffsetPagination',
+        'rest_framework.authentication.TokenAuthentication',
+    
+    ),
+
     'PAGE_SIZE': 10,
     
 }
+
+
+EMAIL_FROM =  'projetodjango23@gmail.com'
+# EMAIL_BCC = 'projetodjango23@gmail.com'
+
+EMAIL_HOST =  'smtp.gmail.com'
+EMAIL_PORT =  587
+EMAIL_HOST_USER = 'projetodjango23@gmail.com'
+EMAIL_HOST_PASSWORD = 'senha app'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -151,14 +162,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "staticfiles"),
-]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
