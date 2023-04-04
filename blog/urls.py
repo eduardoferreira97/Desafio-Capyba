@@ -13,15 +13,15 @@ app_name = 'blog'
 post_api_v1_router = SimpleRouter()
 
 post_api_v1_router.register(
-    'api/v1',
+    'blog',
     api.PostApiv1ViewSet,
     basename="post-api",
 )
 
 urlpatterns = [
-    path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('blog/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
+    path('blog/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('blog/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
 
 urlpatterns += post_api_v1_router.urls

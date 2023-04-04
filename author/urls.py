@@ -7,7 +7,7 @@ author_api_routers = SimpleRouter()
 author_api_routers.register('api',api.AuthorViewSet,basename='author-api')
 
 urlpatterns = [
-
+    
 
 ]
 

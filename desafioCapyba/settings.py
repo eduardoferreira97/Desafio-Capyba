@@ -59,25 +59,23 @@ INSTALLED_APPS = [
     # Django Rest Framework
     "rest_framework",
     "rest_framework_simplejwt",
-]
 
+    # Django Rest Framework Auth
+    'rest_framework.authtoken',
+    'dj_rest_auth',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'dj_rest_auth.registration',
+    'allauth.socialaccount.providers.google',
+    
+]
+SITE_ID = 1
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',  # noqa
     'PAGE_SIZE': 10,
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
-}
-
-from datetime import timedelta
-from django.conf import settings
-SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
-    'BLACKLIST_AFTER_ROTATION': False,
-    'SIGNING_KEY': SECRET_KEY_JWT,
-    'AUTH_HEADER_TYPES': ('Bearer',),
+    
 }
 
 MIDDLEWARE = [
